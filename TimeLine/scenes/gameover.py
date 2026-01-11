@@ -4,6 +4,7 @@ from __future__ import annotations
 import pygame
 
 from TimeLine import constants, config
+from TimeLine.scenes.run import RunScene
 from TimeLine.util.draw import draw_text
 
 
@@ -17,7 +18,7 @@ class GameOverScene:
     def handle_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                self.app.start_run()
+                self.app.manager.change(RunScene(self.app))
             elif event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
 

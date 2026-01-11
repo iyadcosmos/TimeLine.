@@ -26,11 +26,6 @@ class GameApp:
         self.clock = pygame.time.Clock()
         self.manager = SceneManager(MenuScene(self))
 
-    def start_run(self) -> None:
-        from TimeLine.scenes.run import RunScene
-
-        self.manager.change(RunScene(self))
-
     def run(self) -> int:
         try:
             return self._run_loop()

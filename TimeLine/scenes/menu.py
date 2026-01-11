@@ -4,6 +4,7 @@ from __future__ import annotations
 import pygame
 
 from TimeLine import config, constants
+from TimeLine.scenes.run import RunScene
 from TimeLine.util.draw import draw_text
 
 
@@ -17,7 +18,7 @@ class MenuScene:
     def handle_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                self.app.start_run()
+                self.app.manager.change(RunScene(self.app))
             elif event.key == pygame.K_ESCAPE:
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
             elif event.key == pygame.K_f:
@@ -31,7 +32,7 @@ class MenuScene:
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = event.pos
             if self.buttons.get("start") and self.buttons["start"].collidepoint(pos):
-                self.app.start_run()
+                self.app.manager.change(RunScene(self.app))
             if self.buttons.get("quit") and self.buttons["quit"].collidepoint(pos):
                 pygame.event.post(pygame.event.Event(pygame.QUIT))
 
